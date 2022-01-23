@@ -1,0 +1,22 @@
+.header {
+   background-color: $blue;
+   padding-top: 13px;
+   padding-bottom: 13px;
+
+   &__container {
+      padding: 0 30px;
+      max-width: 1140px;
+      margin: 0 auto;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+   }
+
+   &__title {
+      color: $white;
+      font-size: 30px;
+      font-weight: 900;
+      text-transform: uppercase;
+   }
+}

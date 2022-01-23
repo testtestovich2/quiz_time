@@ -1,0 +1,22 @@
+html {
+   box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+   box-sizing: inherit;
+}
+
+body {
+   background-color: $white;
+   font-family: Nunito, sans-serif;
+   font-size: 18px;
+   line-height: 1.5;
+   color: $text-color;
+}
+
+button {
+   font: inherit;
+   cursor: pointer;
+}
