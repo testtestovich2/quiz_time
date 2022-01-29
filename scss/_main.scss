@@ -38,10 +38,152 @@
       background-color: transparent;
       color: $blue;
       font-weight: 600;
-      transition: all 0.3s;
+      transition-property: background-color, color;
+      transition-duration: 0.24s;
+      transition-timing-function: ease-in-out;
+
+      display: block;
+      margin: 0 auto;
 
       &:hover {
-         box-shadow: 0px 2px 10px $dark-shadow;
+         background-color: $blue;
+         color: $white;
+      }
+   }
+
+   &__box_question {
+      padding: 60px 120px;
+      height: auto;
+      min-height: 540px;
+   }
+
+   &__form-question {
+      position: relative;
+      &::after {
+         position: absolute;
+         content: attr(data-count);
+         bottom: 0;
+         right: 0;
+         color: $grey;
+         font-size: 18px;
+         font-weight: 300;
+      }
+   }
+
+   &__box_result {
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+   }
+}
+
+.answer {
+   position: relative;
+   display: block;
+   margin-bottom: 26px;
+   font-size: 18px;
+   font-weight: 600;
+   line-height: 40px;
+   padding-left: 65px;
+
+   &__checkbox {
+      position: absolute;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      width: 40px;
+      height: 40px;
+      margin: 0 0 0 -65px;
+
+      &:focus::before,
+      &:hover::before {
+         box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      &::before {
+         content: "";
+         position: absolute;
+         display: block;
+         left: 0;
+         top: 0;
+         width: 40px;
+         height: 40px;
+         background-color: $white;
+         box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+         border-radius: 8px;
+      }
+
+      &::after {
+         content: "";
+         position: absolute;
+         display: block;
+         left: 12px;
+         top: 15px;
+         width: 17px;
+         height: 8px;
+         //border: 2px solid $text-color;
+         //border-top: none;
+         //border-right: none;
+         border-style: solid;
+         border-color: $text-color;
+         border-width: 0 0 2px 2px;
+         transform: rotate(-45deg);
+         opacity: 0;
+         transition: opacity 0.24s ease;
+      }
+
+      &:checked::after {
+         opacity: 1;
+      }
+   }
+
+   &__radio {
+      position: absolute;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      width: 40px;
+      height: 40px;
+      margin: 0 0 0 -65px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:focus::before,
+      &:hover::before {
+         box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      &::before {
+         content: "";
+         position: absolute;
+         display: block;
+         left: 0;
+         top: 0;
+         width: 40px;
+         height: 40px;
+         background-color: $white;
+         box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+         border-radius: 50%;
+      }
+
+      &::after {
+         content: "";
+         //position: relative;
+         //z-index: inherit;
+         position: absolute;
+         display: block;
+         width: 14px;
+         height: 14px;
+         background-color: $text-color;
+         border-radius: 50%;
+         opacity: 0;
+         transition: opacity 0.24s ease;
+      }
+
+      &:checked::after {
+         opacity: 1;
       }
    }
 }
@@ -54,6 +196,17 @@
       flex-direction: column;
       overflow-y: auto;
       max-height: 100%;
+      scrollbar-color: rgba(140, 140, 140, 0.1);
+      scrollbar-width: thin;
+
+      &:-webkit-scrollbar {
+         width: 6px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+         background: rgba(140, 140, 140, 0.1);
+         border-radius: 8px;
+      }
    }
 
    &__item {
@@ -77,13 +230,22 @@
       padding: 16px 20px;
       overflow: hidden;
 
+      transition-property: background-color, color;
+      transition-duration: 0.24s;
+      transition-timing-function: ease-in-out;
+
       &:not(:last-child) {
          margin-right: 20px;
+      }
+
+      &:hover,
+      &:focus {
+         background-color: $dark-blue;
       }
    }
 
    &__result {
-      max-width: 63px;
+      width: min-content;
       text-align: center;
 
       &-ratio {
@@ -99,6 +261,130 @@
          font-weight: 300;
          line-height: 110%;
          color: $grey;
+      }
+   }
+}
+
+.result {
+   &__box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: auto;
+   }
+
+   &__ratio {
+      width: 127px;
+      height: 127px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $grey;
+      border-radius: 50%;
+      color: $white;
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 20px;
+
+      &_1 {
+         background-color: $red;
+      }
+      &_2 {
+         background-color: $yellow;
+      }
+      &_3 {
+         background-color: $green;
+      }
+   }
+
+   &__text {
+      font-size: 18px;
+      font-weight: 600;
+   }
+}
+
+@media (max-width: $laptor) {
+   .selection {
+      &__list {
+         padding-right: 30px;
+      }
+
+      &__theme {
+         font-size: 20px;
+      }
+   }
+}
+
+@media (max-width: $tablet) {
+   .main {
+      padding: 40px 20px;
+
+      &__title {
+         font-size: 34px;
+      }
+
+      &__box {
+         padding: 40px;
+      }
+   }
+
+   .selection {
+      &__list {
+         padding-right: 15px;
+      }
+
+      &__theme {
+         font-size: 18px;
+         padding: 10px 15px;
+
+         &:not(:last-child) {
+            margin-right: 15px;
+         }
+      }
+
+      &__item {
+         margin-bottom: 10px;
+      }
+
+      &__result {
+         display: flex;
+         align-items: center;
+      }
+
+      &__result-text {
+         display: none;
+      }
+   }
+}
+
+@media (max-width: $tablet-mini) {
+   .main {
+      padding: 30px 10px;
+
+      &__box {
+         padding: 15px;
+         border-radius: 15px;
+      }
+
+      &__subtitle {
+         font-size: 20px;
+      }
+
+      &__btn:not(.result__return) {
+         margin-left: 0;
+         min-width: 100%;
+      }
+
+      &__form-question {
+         &::after {
+            bottom: -35px;
+         }
+      }
+   }
+
+   .selection {
+      &__result {
+         font-size: 18px;
       }
    }
 }
