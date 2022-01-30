@@ -52,6 +52,7 @@
    }
 
    &__box_question {
+      opacity: 0;
       padding: 60px 120px;
       height: auto;
       min-height: 540px;
@@ -59,6 +60,7 @@
 
    &__form-question {
       position: relative;
+      opacity: 0;
       &::after {
          position: absolute;
          content: attr(data-count);
@@ -71,6 +73,7 @@
    }
 
    &__box_result {
+      opacity: 0;
       padding: 60px;
       display: flex;
       flex-direction: column;
@@ -185,6 +188,17 @@
       &:checked::after {
          opacity: 1;
       }
+   }
+}
+// Анимация для js (когда не выбраны ответы)
+.main__form-question_error .answer__checkbox::before,
+.main__form-question_error .answer__radio::before {
+   animation: blink 0.3s ease-in-out 3;
+}
+
+@keyframes blink {
+   to {
+      box-shadow: 0px 2px 10px rgba(255, 0, 0, 0.55);
    }
 }
 
